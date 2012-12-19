@@ -1,0 +1,17 @@
+%h3 Paypal error notification
+%p
+  There has been an error for the subscription of #{@user.name} #{@subscription.id}
+%p
+  Notification id: #{@notification.id}
+%p
+  Date: #{Time.now}
+%br
+%h4 Paypal data
+  %table
+    %tr
+      %th Name
+      %th Value
+    - @notification.params.each do |key, value|
+      %tr
+        %td= key
+        %td= value

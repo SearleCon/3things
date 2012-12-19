@@ -1,0 +1,21 @@
+%h1 Pricing
+%br
+- if current_user.subscriptions.any? && current_user.subscriptions.first.has_expired?
+ - if current_user.subscriptions.first.plan.is_free?
+  %p Your free trial has expired, to continue to use AppName please select one of the payment options below:
+ - else
+  %p Your current subscription has expired, to continue to use AppName please select one of the payment options below:
+%br
+%br
+%table.table.table-bordered
+ %tr
+  %td Package
+  %td Number of months
+  %td Price
+ - @plans.each do |plan|
+  - unless plan.is_free
+   %tr
+    %td= plan.name
+    %td= plan.duration
+    %td= plan.price
+    %td= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), paypal_check_out_plan_path(plan)

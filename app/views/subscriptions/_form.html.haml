@@ -1,0 +1,16 @@
+%h1 Order details
+= simple_form_for @subscription, :url => plan_subscriptions_path(@plan,@subscription) do |f|
+ = f.error_notification
+ %br
+ %div
+  %table.table.table-bordered
+   %tr
+    %td= @plan.name
+    %td= @plan.duration
+    %td= @plan.price
+  .form-inputs
+   = f.hidden_field :customer_paypal_id
+   = f.hidden_field :paypal_payment_token
+
+
+  = f.button :submit, class: "btn btn-primary", :value => 'Complete order'
