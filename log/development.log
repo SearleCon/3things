@@ -1,0 +1,34 @@
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to DeviseCreateUsers (20121127142641)
+Migrating to AddNameToUsers (20121127142647)
+Migrating to RolifyCreateRoles (20121127142707)
+Migrating to CreateSuggestions (20121128143041)
+Migrating to CreateDelayedJobs (20121128173854)
+Migrating to IndexForeignKeysAutomatically (20121128175600)
+Migrating to CreateSubscriptions (20121128182335)
+Migrating to CreatePlans (20121129073655)
+Migrating to AddCustomerPaypalIdToSubscriptions (20121129113547)
+Migrating to CreatePaymentNotifications (20121129155110)
+Migrating to ChangeCustomerPaypalIdToString (20121130112524)
+Migrating to CreateVouchers (20121210153237)
+  [1m[35m (0.6ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("delayed_jobs")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('delayed_jobs_priority')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("payment_notifications")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("plans")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("roles")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_roles_on_resource_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_roles_on_name_and_resource_type_and_resource_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_roles_on_name')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("subscriptions")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("suggestions")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("users")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_users_on_reset_password_token')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_users_on_email')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("users_roles")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_users_roles_on_role_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_users_roles_on_user_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_users_roles_on_user_id_and_role_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("vouchers")[0m
