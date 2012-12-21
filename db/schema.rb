@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121210153237) do
+ActiveRecord::Schema.define(:version => 20121220082720) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -60,6 +60,19 @@ ActiveRecord::Schema.define(:version => 20121210153237) do
   add_index "roles", ["name"], :name => "index_roles_on_name"
   add_index "roles", ["resource_id"], :name => "index_roles_on_resource_id"
 
+  create_table "status_histories", :force => true do |t|
+    t.integer  "status_id"
+    t.integer  "task_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "statuses", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "subscriptions", :force => true do |t|
     t.integer  "plan_id"
     t.integer  "user_id"
@@ -76,6 +89,17 @@ ActiveRecord::Schema.define(:version => 20121210153237) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "tasks", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "status_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "user_id"
+  end
+
+  add_index "tasks", ["user_id"], :name => "index_tasks_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
