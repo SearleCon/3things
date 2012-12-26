@@ -24,14 +24,14 @@ describe TasksController do
   # Task. As you add validations to Task, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {  }
+    { :description => 'MyDescription', :title => 'Title', :status => Status.first_or_create!(:name => 'Todo') }
   end
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # TasksController. Be sure to keep this updated too.
   def valid_session
-    {}
+    { }
   end
 
   describe "GET index" do

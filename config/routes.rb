@@ -18,6 +18,8 @@ Foundation::Application.routes.draw do
 
   resources :payment_notifications, controller: 'payment_notification',  only: [:create]
 
+  resources :tasks
+
 
   #contact routes
   match '/contact_us' => 'contact#new', :as => 'contact_us', :via => :get

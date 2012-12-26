@@ -30,3 +30,5 @@ gem "annotate", :group => [:development]
 gem 'delayed_job_active_record'
 gem 'paypal-recurring'
 gem 'localtunnel', :group => [:development]
+gem 'jquery-turbolinks'
+

@@ -17,7 +17,7 @@ class BillingMailer < ActionMailer::Base
     @user = User.find(subscription.user_id)
     @subscription = subscription
     @notification = notification
-    mail to: 'support@searleconsulting.co.za', subject: "Paypal error: Notification #{notification.id}"
+    mail to: 'billing@searleconsulting.co.za', subject: "Paypal error: Notification #{notification.id}"
   end
 
 end
