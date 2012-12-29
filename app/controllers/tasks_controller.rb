@@ -37,9 +37,7 @@ class TasksController < ApplicationController
   # PUT /tasks/1
   # PUT /tasks/1.json
   def update
-    if  @task.update_attributes(params[:task])
-      flash[:notice] = 'Task was successfully updated.'
-    end
+    flash[:notice] = 'Task was successfully updated.' if  @task.update_attributes(params[:task])
     respond_with(@task)
   end
 
@@ -57,6 +55,6 @@ class TasksController < ApplicationController
   end
 
   def new_resource
-    @task = current_user.tasks.new(params[:task])
+    @task = current_user.tasks.build(params[:task])
   end
 end

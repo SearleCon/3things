@@ -15,7 +15,7 @@ class Task < ActiveRecord::Base
   end
 
   def make_history
-    StatusHistory.create(:status_id => self.status_id_was, :task_id => self)  if self.status_id_changed?
+    StatusHistory.create!(:status_id => self.status_id_was, :task_id => self.id)  if self.status_id_changed?
   end
 
 end
