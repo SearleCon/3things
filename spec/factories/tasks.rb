@@ -5,5 +5,6 @@ FactoryGirl.define do
     title "MyString"
     description "MyText"
     association :status, :factory => :status, :name => 'Todo'
+    association :user, :factory => :user
   end
 end

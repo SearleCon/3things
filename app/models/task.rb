@@ -6,8 +6,8 @@ class Task < ActiveRecord::Base
   before_validation :set_default_status, :on => :create
   before_update :make_history
 
-  attr_accessible  :description, :title, :status
-  validates_presence_of :status, :description, :title
+  attr_accessible  :description, :title, :status_id, :user_id
+  validates_presence_of :status_id, :description, :title, :user_id
 
   private
   def set_default_status

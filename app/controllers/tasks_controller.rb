@@ -37,11 +37,7 @@ class TasksController < ApplicationController
   # PUT /tasks/1
   # PUT /tasks/1.json
   def update
-    status = Status.find(params[:task][:status_id])
-    history_created = false
-    history_created = save_to_history unless status == @task.status
-
-    if history_created && @task.update_attributes(params[:task])
+    if  @task.update_attributes(params[:task])
       flash[:notice] = 'Task was successfully updated.'
     end
     respond_with(@task)
@@ -63,12 +59,4 @@ class TasksController < ApplicationController
   def new_resource
     @task = current_user.tasks.new(params[:task])
   end
-
-  def save_to_history
-     entry = StatusHistory.new
-     entry.status_id = @task.status
-     entry.task_id = @task
-     entry.save
-  end
-
 end
