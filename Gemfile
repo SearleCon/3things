@@ -31,4 +31,5 @@ gem 'delayed_job_active_record'
 gem 'paypal-recurring'
 gem 'localtunnel', :group => [:development]
 gem 'jquery-turbolinks'
+gem 'strong_parameters'
 

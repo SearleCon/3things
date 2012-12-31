@@ -7,4 +7,8 @@ FactoryGirl.define do
     association :status, :factory => :status, :name => 'Todo'
     association :user, :factory => :user
   end
+
+  factory :invalid_task, parent: :task do
+    title nil
+  end
 end
