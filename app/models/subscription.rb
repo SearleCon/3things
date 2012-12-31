@@ -2,8 +2,9 @@ class Subscription < ActiveRecord::Base
   belongs_to :user
   belongs_to :plan
 
-  attr_accessible :expiry_date, :plan_id, :user_id, :active, :customer_paypal_id, :paypal_payment_token
   attr_accessor :paypal_payment_token
+
+  validates_presence_of :plan_id, :customer_paypal_id
 
   def has_expired?
     self.expiry_date <= Date.today

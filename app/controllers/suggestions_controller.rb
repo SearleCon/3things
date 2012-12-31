@@ -14,6 +14,10 @@ class SuggestionsController < ApplicationController
 
   private
   def new_resource
-    @suggestion = Suggestion.new(params[:suggestion])
+    @suggestion = Suggestion.new(suggestion_params)
+  end
+
+  def suggestion_params
+    params.require(:suggestion).permit(:subject, :suggestion) if params[:suggestion]
   end
 end

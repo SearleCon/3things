@@ -14,7 +14,7 @@ describe SubscriptionsController do
   # Subscription. As you add validations to Subscription, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    { }
+    { :customer_paypal_id => '1234' }
   end
 
   describe "GET new" do
@@ -45,7 +45,23 @@ describe SubscriptionsController do
         response.should redirect_to(root_url)
       end
     end
-
   end
+
+  describe "with invalid params" do
+    describe "with invalid params" do
+      it "assigns a newly created but unsaved subscription as @subscription" do
+        # Trigger the behavior that occurs when invalid params are submitted
+        post :create,{:subscription => { :customer_paypal_id => nil}, :plan_id => @plan.to_param}
+        assigns(:subscription).should be_a_new(Subscription)
+      end
+
+      it "re-renders the 'new' template" do
+        # Trigger the behavior that occurs when invalid params are submitted
+        post :create, {:subscription => { :customer_paypal_id => nil}, :plan_id => @plan.to_param}
+        response.should render_template("new")
+      end
+    end
+  end
+
 
 end

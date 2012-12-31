@@ -35,7 +35,11 @@ class SubscriptionsController < ApplicationController
   end
 
   def new_resource
-     @subscription = @plan.subscriptions.new(params[:subscription])  if @plan
+     @subscription = @plan.subscriptions.new(subscription_params)  if @plan
+  end
+
+  def subscription_params
+    params.require(:subscription).permit(:customer_paypal_id, :paypal_payment_token) if params[:subscription]
   end
 
 end

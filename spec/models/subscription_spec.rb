@@ -1,7 +1,17 @@
 require 'spec_helper'
 
 describe Subscription do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "has a valid factory" do
+    FactoryGirl.create(:subscription).should be_valid
+  end
+
+  it "is invalid without a plan" do
+    FactoryGirl.build(:subscription, plan_id: nil).should_not be_valid
+  end
+
+  it "is invalid without a customer_paypal_id" do
+    FactoryGirl.build(:subscription, customer_paypal_id: nil).should_not be_valid
+  end
 end
 # == Schema Information
 #

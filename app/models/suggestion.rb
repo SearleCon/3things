@@ -1,5 +1,4 @@
 class Suggestion < ActiveRecord::Base
-  attr_accessible :subject, :suggestion
 
   validates_presence_of :subject, :suggestion
 

@@ -13,6 +13,7 @@ class UserObserver < ActiveRecord::Observer
   def create_free_trial
     plan = Plan.find_by_is_free(true)
     subscription = plan.subscriptions.build
+    subscription.customer_paypal_id = 'trial'
     subscription.save!
     subscription
   end

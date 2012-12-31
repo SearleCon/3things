@@ -15,6 +15,10 @@ class ContactController < ApplicationController
 
   private
   def new_resource
-    @message = Message.new(params[:message])
+    @message = Message.new(message_params)
+  end
+
+  def message_params
+    params.require(:message).permit(:name, :subject, :body, :email) if params[:message]
   end
 end

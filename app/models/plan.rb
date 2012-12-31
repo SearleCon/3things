@@ -3,7 +3,6 @@ class Plan < ActiveRecord::Base
 
   default_scope where(:active => true)
 
-  attr_accessible :active, :duration, :is_free, :name, :price
   validates :duration, :name, :price, :presence => true
   validates :active, :is_free, :inclusion => {:in => [true, false]}
   validates_numericality_of :price, :duration
