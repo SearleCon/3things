@@ -3,7 +3,7 @@
 Dear #{@user.name}
 %p We have received confirmation from paypal that your AppName subscription has successfully been created.
 %p
-If you have any queries please mail us with your reference number #{@subscription.paypal_customer_token} at support@searleconsulting.co.za or go to #{link_to 'AppName.com', root_url, :target => '_blank'} and click on contact.
+If you have any queries please mail us with your reference number #{@subscription.customer_paypal_id} at support@searleconsulting.co.za or go to #{link_to 'AppName.com', root_url, :target => '_blank'} and click on contact.
 %br
 %p Thank you for your support
 %br

@@ -7,11 +7,11 @@
   Date: #{Time.now}
 %br
 %h4 Paypal data
-  %table
-    %tr
-      %th Name
-      %th Value
-    - @notification.params.each do |key, value|
+%table
+  %tr
+    %th Name
+    %th Value
+    - @notification.params.try(:each) do |key, value|
       %tr
         %td= key
         %td= value

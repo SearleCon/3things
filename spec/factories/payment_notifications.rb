@@ -2,7 +2,6 @@
 
 FactoryGirl.define do
   factory :payment_notification do
-    params "MyText"
     user_id 1
     transaction_id 1
     status "MyString"

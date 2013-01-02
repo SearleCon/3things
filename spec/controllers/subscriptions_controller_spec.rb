@@ -27,6 +27,7 @@ describe SubscriptionsController do
 
   describe "POST create" do
 
+
     describe "with valid params" do
       it "creates a new Subscription" do
         expect {
@@ -45,9 +46,8 @@ describe SubscriptionsController do
         response.should redirect_to(root_url)
       end
     end
-  end
 
-  describe "with invalid params" do
+
     describe "with invalid params" do
       it "assigns a newly created but unsaved subscription as @subscription" do
         # Trigger the behavior that occurs when invalid params are submitted
@@ -62,6 +62,4 @@ describe SubscriptionsController do
       end
     end
   end
-
-
 end

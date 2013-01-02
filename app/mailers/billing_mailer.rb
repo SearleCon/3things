@@ -1,5 +1,5 @@
 class BillingMailer < ActionMailer::Base
-  default from: "Billing@SearleConsulting.co.za"
+  default from: "billing@searleconsulting.co.za"
 
   def subscription_activated(subscription)
     @user = User.find(subscription.user_id)
