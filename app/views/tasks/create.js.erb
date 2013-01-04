@@ -1,2 +1,4 @@
 $("#Todo").append("<%= escape_javascript(render @task) %>");
 $("#add_task").html("<%= escape_javascript (render 'tasks/form') %>");
+$('.best_in_place').best_in_place();
+$('#' + <%=@task.id%>).closest('li').effect('highlight', {}, 3000);

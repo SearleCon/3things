@@ -38,10 +38,10 @@ class TasksController < ApplicationController
   # PUT /tasks/1
   # PUT /tasks/1.json
   def update
-    new_status = Status.where(:name => task_params[:status]).first
-    @task.status = new_status
     flash[:notice] = 'Task was successfully updated.' if  @task.update_attributes(task_params)
-    respond_with(@task)
+    respond_with(@task) do |format|
+      format.json { respond_with_bip(@task) }
+    end
   end
 
   # DELETE /tasks/1
@@ -74,7 +74,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:description, :title, :status) if params[:task]
+    params.require(:task).permit(:description, :title) if params[:task]
   end
 
 

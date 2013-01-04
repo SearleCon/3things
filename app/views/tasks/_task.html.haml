@@ -2,6 +2,6 @@
   %li{:id => task.id, :data => {:moved_path => moved_task_path(task) } }
     %button.btn.btn-link{:data => { :target => "#details_#{task.id}", :toggle => "collapse"} }
       %i.icon-plus.icon-black
-    = task.title.capitalize
+    = best_in_place task, :title, :type => :input, :classes => 'bounce_on_success'
     #details.collapse{:id => task.id}
-      = task.description.capitalize
+      = best_in_place task, :description, :type => :textarea, :classes => 'highlight_on_success'
