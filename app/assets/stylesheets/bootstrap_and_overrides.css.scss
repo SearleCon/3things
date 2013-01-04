@@ -13,12 +13,11 @@ $grayMediumLight: #eaeaea;
 
 html {
   overflow-y: scroll;
-
-
 }
 
 body {
   padding-top: 60px;
+  padding-bottom: 40px;
 }
 
 section {
@@ -142,3 +141,32 @@ input, textarea, select, .uneditable-input {
   @extend .control-group;
   @extend .error;
 }
+
+#sidebar{
+  margin-left: 0;
+  padding-right: 30px;
+}
+
+.sidebar-nav{
+  padding: 9px 0;
+}
+
+a.toggles{
+  position: fixed;
+  left:0;
+  bottom:0;
+  display: block;
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+}
+
+.no-sidebar {
+  margin-left:0;
+}
+
+.sortable{
+  min-height: 100px;
+  background-color: #f5f5f5;
+}
+

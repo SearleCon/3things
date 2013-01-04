@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   before_filter :subscription_required
+  after_filter :set_xhr_flash
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_path, :alert => exception.message
@@ -13,6 +14,10 @@ class ApplicationController < ActionController::Base
 
   def render_not_found
     render :file => "#{Rails.root}/public/404.html", :status => 404, :layout => false
+  end
+
+  def set_xhr_flash
+    flash.discard if request.xhr?
   end
 
   private

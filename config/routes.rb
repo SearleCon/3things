@@ -2,10 +2,10 @@ Foundation::Application.routes.draw do
 
 
   authenticated :user do
-    root :to => 'home#index'
+    root :to => 'tasks#index'
   end
-  root :to => "home#index"
-  devise_for :users, :controllers => {:sessions => "sessions"}
+  root :to => "tasks#index"
+  devise_for :users, :controllers => {:sessions => "sessions", :registrations => "users/registrations", :passwords => "users/passwords"}
   resources :users
 
   resources :suggestions, only: [:new, :create]
@@ -18,7 +18,11 @@ Foundation::Application.routes.draw do
 
   resources :payment_notifications, controller: 'payment_notification',  only: [:create]
 
-  resources :tasks
+  resources :tasks do
+    member do
+      put :moved, :as => :moved
+    end
+  end
 
 
   #contact routes
@@ -41,22 +45,22 @@ end
 # use command 'annotate --routes' in your console to generate the list of routes below courtesy of Annotate gem
 
 #== Route Map
-# Generated on 02 Dec 2012 12:57
+# Generated on 03 Jan 2013 14:45
 #
-#                     root        /                                           home#index
+#                     root        /                                           tasks#index
 #         new_user_session GET    /users/sign_in(.:format)                    sessions#new
 #             user_session POST   /users/sign_in(.:format)                    sessions#create
 #     destroy_user_session DELETE /users/sign_out(.:format)                   sessions#destroy
-#            user_password POST   /users/password(.:format)                   devise/passwords#create
-#        new_user_password GET    /users/password/new(.:format)               devise/passwords#new
-#       edit_user_password GET    /users/password/edit(.:format)              devise/passwords#edit
-#                          PUT    /users/password(.:format)                   devise/passwords#update
-# cancel_user_registration GET    /users/cancel(.:format)                     devise/registrations#cancel
-#        user_registration POST   /users(.:format)                            devise/registrations#create
-#    new_user_registration GET    /users/sign_up(.:format)                    devise/registrations#new
-#   edit_user_registration GET    /users/edit(.:format)                       devise/registrations#edit
-#                          PUT    /users(.:format)                            devise/registrations#update
-#                          DELETE /users(.:format)                            devise/registrations#destroy
+#            user_password POST   /users/password(.:format)                   users/passwords#create
+#        new_user_password GET    /users/password/new(.:format)               users/passwords#new
+#       edit_user_password GET    /users/password/edit(.:format)              users/passwords#edit
+#                          PUT    /users/password(.:format)                   users/passwords#update
+# cancel_user_registration GET    /users/cancel(.:format)                     users/registrations#cancel
+#        user_registration POST   /users(.:format)                            users/registrations#create
+#    new_user_registration GET    /users/sign_up(.:format)                    users/registrations#new
+#   edit_user_registration GET    /users/edit(.:format)                       users/registrations#edit
+#                          PUT    /users(.:format)                            users/registrations#update
+#                          DELETE /users(.:format)                            users/registrations#destroy
 #                    users GET    /users(.:format)                            users#index
 #                          POST   /users(.:format)                            users#create
 #                 new_user GET    /users/new(.:format)                        users#new
@@ -71,6 +75,14 @@ end
 #    paypal_check_out_plan GET    /plans/:id/paypal_check_out(.:format)       plans#paypal_check_out
 #                    plans GET    /plans(.:format)                            plans#index
 #    payment_notifications POST   /payment_notifications(.:format)            payment_notification#create
+#               moved_task PUT    /tasks/:id/moved(.:format)                  tasks#moved
+#                    tasks GET    /tasks(.:format)                            tasks#index
+#                          POST   /tasks(.:format)                            tasks#create
+#                 new_task GET    /tasks/new(.:format)                        tasks#new
+#                edit_task GET    /tasks/:id/edit(.:format)                   tasks#edit
+#                     task GET    /tasks/:id(.:format)                        tasks#show
+#                          PUT    /tasks/:id(.:format)                        tasks#update
+#                          DELETE /tasks/:id(.:format)                        tasks#destroy
 #               contact_us GET    /contact_us(.:format)                       contact#new
 #       send_contact_email POST   /send_contact_email(.:format)               contact#create
 #     terms_and_conditions GET    /terms_and_conditions(.:format)             static_pages#terms_and_conditions

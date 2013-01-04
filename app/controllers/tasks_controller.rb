@@ -1,12 +1,13 @@
 class TasksController < ApplicationController
   respond_to :html, :js, :json
 
-  before_filter :get_resource, :only => [:show, :update, :edit, :destroy]
+  before_filter :get_resource, :only => [:moved,:show, :update, :edit, :destroy]
+  before_filter :get_status, :only => [:moved]
   before_filter :new_resource, :only => [:new, :create]
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = current_user.tasks
+    @tasks = (current_user.tasks) if current_user
     respond_with(@tasks)
   end
 
@@ -37,6 +38,8 @@ class TasksController < ApplicationController
   # PUT /tasks/1
   # PUT /tasks/1.json
   def update
+    new_status = Status.where(:name => task_params[:status]).first
+    @task.status = new_status
     flash[:notice] = 'Task was successfully updated.' if  @task.update_attributes(task_params)
     respond_with(@task)
   end
@@ -49,16 +52,31 @@ class TasksController < ApplicationController
   end
 
 
+  # MOVED /tasks/1/moved
+  # MOVED /tasks/1/moved.json
+  def moved
+    @task.status = @status
+    @task.save
+    respond_with(@task)
+  end
+
   private
   def get_resource
     @task = Task.find(params[:id]) if params[:id]
   end
 
   def new_resource
-    @task = current_user.tasks.build(task_params)
+    @task = current_user.tasks.build(task_params) if current_user
+  end
+
+  def get_status
+    @status = Status.where(:name => params[:status]).first if params[:status]
   end
 
   def task_params
-    params.require(:task).permit(:description, :title, :status_id) if params[:task]
+    params.require(:task).permit(:description, :title, :status) if params[:task]
   end
+
+
+
 end

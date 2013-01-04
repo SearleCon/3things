@@ -32,4 +32,5 @@ gem 'paypal-recurring'
 gem 'localtunnel', :group => [:development]
 gem 'jquery-turbolinks'
 gem 'strong_parameters'
+gem 'cache_digests'
 

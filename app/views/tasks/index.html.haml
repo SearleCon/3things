@@ -1,17 +1,10 @@
 %h1 Listing tasks
 
-%table
-  %tr
-    %th
-    %th
-    %th
-
-  - @tasks.each do |task|
-    %tr
-      %td= link_to 'Show', task
-      %td= link_to 'Edit', edit_task_path(task)
-      %td= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }
-
+#tasks.span3
+  - if current_user
+    = render 'tasks/tasks', :tasks => current_user.tasks.doings, :task_type => 'Doing'
 %br
 
-= link_to 'New Task', new_task_path
+%br
+#add_task
+  = render 'tasks/form'
