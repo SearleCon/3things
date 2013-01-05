@@ -52,19 +52,18 @@ class TasksController < ApplicationController
   end
 
 
-  # MOVED /tasks/1/moved
-  # MOVED /tasks/1/moved.json
+  # PUT /tasks/1/moved
+  # PUT /tasks/1/moved.json
   def moved
     @task.status = @status
     @task.save
     respond_with(@task)
   end
 
+  # DELETE /tasks/remove_selected
+  # DELETE /tasks/removed_selected.json
   def remove_selected
-    @tasks = Task.find(params[:task_ids]) if params[:task_ids]
-    @tasks.each do |task|
-      task.destroy
-    end
+    @tasks = Task.destroy_all(:id => params[:task_ids]) if params[:task_ids]
     respond_with(@tasks)
   end
 

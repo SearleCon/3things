@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  skip_before_filter :subscription_required
   before_filter :authenticate_user!
   before_filter :get_resource, :only => [:show, :update, :destroy]
 

@@ -1,6 +1,5 @@
 class SubscriptionsController < ApplicationController
   respond_to :html
-  skip_before_filter :subscription_required
   before_filter :get_parent_resource, :only => [:new, :create]
   before_filter :new_resource, :only => [:new,:create]
 

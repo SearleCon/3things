@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :subscription_required
   after_filter :set_xhr_flash
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -21,19 +20,21 @@ class ApplicationController < ActionController::Base
   end
 
   private
+  def after_sign_in_path_for(resource)
+    if current_user.subscriptions.empty? || current_user.subscriptions.first.has_expired?
+       plans_url
+    else
+      root_url
+    end
+
+  end
+
+
   def after_sign_out_path_for(resource_or_scope)
     if current_user
       new_suggestion_url
     else
       root_url
-    end
-  end
-
-  def subscription_required
-    unless current_user.nil?
-      if current_user.subscriptions.empty? || current_user.subscriptions.first.has_expired?
-        redirect_to plans_url
-      end
     end
   end
 

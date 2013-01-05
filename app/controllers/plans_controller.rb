@@ -1,7 +1,5 @@
 class PlansController < ApplicationController
   respond_to :html
-
-  skip_before_filter :subscription_required
   before_filter :get_resource, :only => [:paypal_check_out]
 
   # GET /plans

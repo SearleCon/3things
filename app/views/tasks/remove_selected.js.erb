@@ -1,0 +1,6 @@
+<% @tasks.try(:each) do |task| %>
+$("#<%=task.status.name.capitalize%>").children("#<%=task.id %>").fadeOut('slow',function()
+{
+  $(this).remove();
+});
+<% end %>

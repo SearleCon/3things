@@ -1,7 +1,7 @@
-= form_tag remove_selected_tasks_path, :method => :delete do
-  - cache tasks do
-    %ul.sortable.nav.nav-list{:id => task_type}
-      %li.nav-header
-        = task_type
+= form_tag remove_selected_tasks_path, :remote => true, :method => :delete do
+  %ul.sortable.nav.nav-list{:id => task_type}
+    %li.nav-header
+      = task_type
+    - cache tasks do
       = render tasks
-    = submit_tag 'Remove selected'
+  = submit_tag 'Remove selected'

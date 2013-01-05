@@ -1,5 +1,4 @@
 class PaymentNotificationController < ApplicationController
-  skip_before_filter :subscription_required
   protect_from_forgery :except => [:create]
 
   def create

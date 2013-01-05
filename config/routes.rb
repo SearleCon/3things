@@ -1,10 +1,10 @@
 Foundation::Application.routes.draw do
 
-
   authenticated :user do
     root :to => 'tasks#index'
   end
-  root :to => "tasks#index"
+  root :to => "home#index"
+
   devise_for :users, :controllers => {:sessions => "sessions", :registrations => "users/registrations", :passwords => "users/passwords"}
   resources :users
 
@@ -14,7 +14,6 @@ Foundation::Application.routes.draw do
     resources :subscriptions, :only => [:new, :create]
     get :paypal_check_out, on: :member
   end
-
 
   resources :payment_notifications, controller: 'payment_notification',  only: [:create]
 

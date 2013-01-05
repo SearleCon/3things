@@ -11,7 +11,6 @@ describe TasksController do
     @status = FactoryGirl.create(:status, :name => 'Todo')
     @valid_params =  @task.attributes
     @invalid_params =  FactoryGirl.build(:invalid_task, :user => @user).attributes
-    controller.class.skip_before_filter :subscription_required
   end
 
   # This should return the minimal set of attributes required to create a valid
