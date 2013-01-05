@@ -60,6 +60,14 @@ class TasksController < ApplicationController
     respond_with(@task)
   end
 
+  def remove_selected
+    @tasks = Task.find(params[:task_ids]) if params[:task_ids]
+    @tasks.each do |task|
+      task.destroy
+    end
+    respond_with(@tasks)
+  end
+
   private
   def get_resource
     @task = Task.find(params[:id]) if params[:id]

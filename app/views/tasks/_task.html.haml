@@ -1,6 +1,7 @@
 - cache task do
   %li{:id => task.id, :data => {:moved_path => moved_task_path(task) } }
-    %button.btn.btn-link{:data => { :target => "#details_#{task.id}", :toggle => "collapse"} }
+    = check_box_tag "task_ids[]", task.id
+    %button.btn.btn-link{:type => 'button',:data => { :target => "#details_#{task.id}", :toggle => "collapse"} }
       %i.icon-plus.icon-black
     = best_in_place task, :title, :type => :input, :classes => 'bounce_on_success'
     #details.collapse{:id => task.id}

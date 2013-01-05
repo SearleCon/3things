@@ -19,9 +19,8 @@ Foundation::Application.routes.draw do
   resources :payment_notifications, controller: 'payment_notification',  only: [:create]
 
   resources :tasks do
-    member do
-      put :moved, :as => :moved
-    end
+    member { put :moved }
+    collection { delete :remove_selected }
   end
 
 
@@ -45,7 +44,7 @@ end
 # use command 'annotate --routes' in your console to generate the list of routes below courtesy of Annotate gem
 
 #== Route Map
-# Generated on 03 Jan 2013 14:45
+# Generated on 05 Jan 2013 18:10
 #
 #                     root        /                                           tasks#index
 #         new_user_session GET    /users/sign_in(.:format)                    sessions#new
@@ -76,6 +75,7 @@ end
 #                    plans GET    /plans(.:format)                            plans#index
 #    payment_notifications POST   /payment_notifications(.:format)            payment_notification#create
 #               moved_task PUT    /tasks/:id/moved(.:format)                  tasks#moved
+#    remove_selected_tasks DELETE /tasks/remove_selected(.:format)            tasks#remove_selected
 #                    tasks GET    /tasks(.:format)                            tasks#index
 #                          POST   /tasks(.:format)                            tasks#create
 #                 new_task GET    /tasks/new(.:format)                        tasks#new

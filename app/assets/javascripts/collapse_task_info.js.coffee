@@ -1,4 +1,5 @@
 $(document).ready ->
 
-  $("button").click ->
+  $("button .btn .btn-link").click (event) ->
     $(this).find('i').toggleClass 'icon-plus icon-minus'
+
