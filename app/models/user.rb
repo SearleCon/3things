@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :tasks
-  has_many :subscriptions, :conditions => { :active => true}, :before_add => :deactivate_current_subscription
+  has_many :tasks, :include => :status
+  has_many :subscriptions, :include => :plan, :conditions => { :active => true}, :before_add => :deactivate_current_subscription
 
   rolify
   # Include default devise modules. Others available are:
