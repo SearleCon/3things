@@ -1,11 +1,13 @@
-<% @tasks.try(:each) do |task| %>
-$("#<%=task.status.name.capitalize%>").children("#<%=task.id %>").fadeOut('slow',function()
-{
-  $(this).remove();
-});
+<% unless @tasks.nil? %>
+ <% @tasks.try(:each) do |task| %>
+  $("#<%=task.status.name.capitalize%>").children("#<%=task.id %>").fadeOut('slow',function()
+  {
+   $(this).remove();
+  });
+ <% end %>
+ $('[type="checkbox"]').css("visibility", "hidden");
+ $("#<%=@tasks.first.status.name.capitalize%>").children('li').children('[type="checkbox"]').css("visibility", "hidden");
+ $("#<%=@tasks.first.status.name.capitalize%>_submit").data('updatelist', false);
+ $("#<%=@tasks.first.status.name.capitalize%>_submit").val('Edit list');
 <% end %>
-$('[type="checkbox"]').css("visibility", "hidden");
-$("#<%=@tasks.first.status.name.capitalize%>").children('li').children('[type="checkbox"]').css("visibility", "hidden");
-$("#<%=@tasks.first.status.name.capitalize%>_submit").data('updatelist', false);
-$("#<%=@tasks.first.status.name.capitalize%>_submit").val('Edit list');
 

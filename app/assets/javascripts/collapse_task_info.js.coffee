@@ -1,6 +1,6 @@
 $(document).ready ->
 
-  $("button .btn .btn-link").click (event) ->
+  $(".expand_task").click (event) ->
     $(this).find('i').toggleClass 'icon-plus icon-minus'
 
 

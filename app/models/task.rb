@@ -15,7 +15,7 @@ class Task < ActiveRecord::Base
 
   private
   def format_attributes
-    self.title.titleize!
+    self.title = self.title.to_s.titleize
     self.description.capitalize!
   end
 

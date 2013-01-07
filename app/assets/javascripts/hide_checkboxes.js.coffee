@@ -1,7 +1,6 @@
 $(document).ready ->
-  $('[type="checkbox"]').css("visibility", "hidden")
 
-  $('[type="submit"]').click ->
+  $('.task_list [type="submit"]').click ->
     if !$(this).data('updatelist')
       $(this).data('updatelist', true)
       taskList = $(this).parent().prop('id').replace('_list_form', '')
@@ -10,7 +9,7 @@ $(document).ready ->
       return false
 
 
-  $('form').submit ->
+  $('form .task_list').submit ->
     $fields = $(this).find('input[type="checkbox"]:checked');
     if (!$fields.length)
      $(this).find('input[type="submit"]').val('Edit list')
