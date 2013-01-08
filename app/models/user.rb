@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :timeoutable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :role_ids, :as => :admin
@@ -17,7 +17,11 @@ class User < ActiveRecord::Base
     expired = self.subscriptions.last
     expired.toggle!(:active) unless expired.nil?
   end
-  
+
+  def timeout_in
+      10.seconds
+  end
+
 end
 # == Schema Information
 #

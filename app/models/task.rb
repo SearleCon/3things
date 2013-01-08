@@ -3,7 +3,7 @@ class Task < ActiveRecord::Base
   lookup :status
 
   belongs_to :user, :touch => true
-  belongs_to :status, :touch => true
+  #belongs_to :status, :touch => true
 
   before_validation :set_default_status, :on => :create
   before_save :format_attributes
