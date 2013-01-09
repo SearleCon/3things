@@ -142,7 +142,6 @@ input, textarea, select, .uneditable-input {
   @extend .error;
 }
 
-input[type="checkbox"]
-{
+input[type="checkbox"]{
   visibility: hidden;
 }

@@ -1,9 +1,9 @@
-= simple_form_for Task.new, :remote => true do |f|
+= simple_form_for task, :remote => true do |f|
   = f.error_notification
 
   .form-inputs
-    = f.input :description, :autofocus => true
     = f.input :title, :required => true
+    = f.input :description, :autofocus => true
+    = f.hidden_field :status_id
 
-  .form-actions
-    = f.button :submit
+  = f.button :submit

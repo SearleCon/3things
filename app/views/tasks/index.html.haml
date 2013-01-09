@@ -1,10 +1,16 @@
-%h1 Listing tasks
+.tabbable
+  %ul.nav.nav-tabs{:data => { :tabs => "tabs" } }
+    %li.active
+      %a{:href => "#todo", :data => { :toggle => 'tab' }} Todo
+    %li
+      %a{:href => "#doing", :data => { :toggle => 'tab' }} Doing
+  .tab-content
+    #todo.tab-pane.active
+      = render 'tasks/tasks', :tasks => current_user.try(:tasks).todos, :task_type => 'Todo'
+    #doing.tab-pane
+      = render 'tasks/tasks', :tasks => current_user.try(:tasks).doings, :task_type => 'Doing'
 
-#tasks.span3
-  - if current_user
-    = render 'tasks/tasks', :tasks => current_user.tasks.doings, :task_type => 'Doing'
-%br
 
-%br
-#add_task
-  = render 'tasks/form'
+
+
+

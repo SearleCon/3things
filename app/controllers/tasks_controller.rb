@@ -81,7 +81,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:description, :title) if params[:task]
+    params.require(:task).permit(:description, :title, :status_id) if params[:task]
   end
 
 

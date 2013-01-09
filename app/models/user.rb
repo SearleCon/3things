@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :tasks, :include => :status
+  has_many :tasks
   has_many :subscriptions, :include => :plan, :conditions => { :active => true}, :before_add => :deactivate_current_subscription
 
   rolify
@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   end
 
   def timeout_in
-      10.seconds
+     2.hours
   end
 
 end

@@ -4,4 +4,8 @@
       = task_type
     - cache tasks do
       = render tasks
+  %br
   = submit_tag 'Edit list', :id => "#{task_type}_submit", :class => 'task_list', :data => { :updatelist => false }
+
+%div.add_task.well{:id => "add_#{task_type}"}
+  = render 'tasks/form', :task => tasks.build

@@ -226,7 +226,7 @@ PLATFORMS
 DEPENDENCIES
   annotate
   best_in_place
-  bootstrap-sass (>= 2.1.1.0)
+  bootstrap-sass (~> 2.2.2.0)
   cache_digests
   cancan (>= 1.6.8)
   capybara (>= 1.1.3)

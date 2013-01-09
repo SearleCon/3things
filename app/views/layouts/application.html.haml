@@ -3,7 +3,7 @@
   %head
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
       %title= content_for?(:title) ? yield(:title) : "Foundation"
-      %meta{:content => content_for?(:description) ? yield(:description) : "3Things", :name => "description"}
+      %meta{:content => content_for?(:description) ? yield(:description) : "Foundation", :name => "description"}
         = stylesheet_link_tag "application", :media => "all"
         = javascript_include_tag "application"
         = csrf_meta_tags
@@ -15,15 +15,10 @@
         .container
           = render 'layouts/navigation'
     #main{:role => "main"}
-      .container-fluid
-        .row-fluid
-          %a.toggles{:href => "#"}
-            %i.icon-chevron-left
-          #sidebar.span3
-            .well.sidebar-nav
-              - if current_user
-                = render 'tasks/tasks', :tasks => current_user.tasks.todos, :task_type => 'Todo'
-          #content.content.span9
-            = render 'layouts/messages'
-            = yield
-            = render 'layouts/footer'
+      .container
+        .content
+          .row
+            .span12
+              = render 'layouts/messages'
+              = yield
+          = render 'layouts/footer'

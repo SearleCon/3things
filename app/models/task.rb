@@ -3,7 +3,6 @@ class Task < ActiveRecord::Base
   lookup :status
 
   belongs_to :user, :touch => true
-  #belongs_to :status, :touch => true
 
   before_validation :set_default_status, :on => :create
   before_save :format_attributes
@@ -20,7 +19,7 @@ class Task < ActiveRecord::Base
   end
 
   def set_default_status
-    self.status = Status.where(:name => :Todo).first
+    self.status = Status.where(:name => :Todo).first unless self.status
   end
 
   def make_history
