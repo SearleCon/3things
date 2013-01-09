@@ -1,9 +1,9 @@
 .tabbable
   %ul.nav.nav-tabs{:data => { :tabs => "tabs" } }
-    %li.active
-      %a{:href => "#todo", :data => { :toggle => 'tab' }} Todo
-    %li
-      %a{:href => "#doing", :data => { :toggle => 'tab' }} Doing
+    %li.active.droppable{:id => 'test'}
+      %a{:href => "#todo", :data => { :status => 'Todo' ,:toggle => 'tab' }} Todo
+    %li.droppable{:id => 'test2'}
+      %a{:href => "#doing", :data => { :status => 'Doing',:toggle => 'tab' }} Doing
   .tab-content
     #todo.tab-pane.active
       = render 'tasks/tasks', :tasks => current_user.try(:tasks).todos, :task_type => 'Todo'
