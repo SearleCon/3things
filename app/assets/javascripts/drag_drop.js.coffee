@@ -27,23 +27,11 @@ $(document).ready ->
     stop: ->
       $(this).removeClass("active").closest("li").removeClass "active"
 
-  $('#todo li .droppable').droppable
+
+  $('.droppable').droppable
     activeClass: "active"
-    hoverClass: "hover"
     tolerance: "touch"
-    accept: "doing"
-
-    drop: (event,ui) ->
-      tabItem = $(this)
-      move = ui.draggable
-      update_Status(move, tabItem.data('status'), move.data('moved_path'))
-
-
-  $('#doing li .droppable').droppable
-    activeClass: "active"
-    hoverClass: "hover"
-    tolerance: "touch"
-    accept: "todo"
+    hoverClass: 'hover'
 
     drop: (event,ui) ->
       tabItem = $(this)

@@ -1,13 +1,13 @@
 .tabbable
   %ul.nav.nav-tabs{:data => { :tabs => "tabs" } }
-    %li.active.droppable{:id => 'test'}
-      %a{:href => "#todo", :data => { :status => 'Todo' ,:toggle => 'tab' }} Todo
-    %li.droppable{:id => 'test2'}
-      %a{:href => "#doing", :data => { :status => 'Doing',:toggle => 'tab' }} Doing
+    %li.active.droppable{:id => 'test', :data => {:status => 'Todo'}}
+      %a{:href => "#todos", :data => { :toggle => 'tab' }} Todo
+    %li.droppable{:id => 'test2', :data => {:status => 'Doing'}}
+      %a{:href => "#doings", :data => {:toggle => 'tab' }} Doing
   .tab-content
-    #todo.tab-pane.active
+    #todos.tab-pane.active
       = render 'tasks/tasks', :tasks => current_user.try(:tasks).todos, :task_type => 'Todo'
-    #doing.tab-pane
+    #doings.tab-pane
       = render 'tasks/tasks', :tasks => current_user.try(:tasks).doings, :task_type => 'Doing'
 
 
