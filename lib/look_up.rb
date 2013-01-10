@@ -11,13 +11,15 @@ module LookUp
 
       # getter
       define_method table.to_s do
-        model.find(read_attribute(foreign_key.to_sym))
+        model.try(:find_by_id, read_attribute(foreign_key.to_sym))
       end
 
       # setter that accepts :value, 'value' or Value object
       define_method "#{table.to_s}=" do |value|
-        id = value.is_a?(model) ? value.id : model.find_by_name(value.to_s).id
-        write_attribute(foreign_key, id)
+        unless value.nil?
+          id = value.try(:is_a?, model) ? value.id : model.try(:find_by_name,value.to_s).id
+          write_attribute(foreign_key, id)
+        end
       end
 
       # returns collection of lookup values as an array eg. ['pending', 'active', 'archived']

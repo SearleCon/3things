@@ -35,4 +35,5 @@ gem 'strong_parameters'
 gem 'cache_digests'
 gem 'best_in_place'
 gem 'dalli'
+gem 'touchpunch-rails'
 

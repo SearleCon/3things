@@ -1,8 +1,8 @@
 .tabbable
   %ul.nav.nav-tabs{:data => { :tabs => "tabs" } }
-    %li.active.droppable{:id => 'test', :data => {:status => 'Todo'}}
+    %li.active.droppable{:id => 'todo_tab', :data => {:status => 'Todo'}}
       %a{:href => "#todos", :data => { :toggle => 'tab' }} Todo
-    %li.droppable{:id => 'test2', :data => {:status => 'Doing'}}
+    %li.droppable{:id => 'doing_tab', :data => {:status => 'Doing'}}
       %a{:href => "#doings", :data => {:toggle => 'tab' }} Doing
   .tab-content
     #todos.tab-pane.active

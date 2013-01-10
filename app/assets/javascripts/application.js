@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require jquery.ui.touch-punch
 //= require jquery.turbolinks
 //= require jquery.purr
 //= require jquery.autosize

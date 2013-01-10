@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  respond_to :html, :js, :json
+  respond_to :html, :js
 
   before_filter :get_resource, :only => [:moved,:show, :update, :edit, :destroy]
   before_filter :get_status, :only => [:moved]

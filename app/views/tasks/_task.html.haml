@@ -1,5 +1,5 @@
 - cache task do
-  %li.draggable{:id => task.id, :class => task.status.name.downcase, :data => {:moved_path => moved_task_path(task) } }
+  %li.draggable{:id => task.id, :class => task.status.name.downcase, :data => {:status => task.status.name.capitalize ,:moved_path => moved_task_path(task) } }
     = check_box_tag "task_ids[]", task.id
     %button.btn.btn-link{:type => 'button',:class => 'expand_task',:data => { :target => "#details_#{task.id}", :toggle => "collapse"} }
       %i.icon-plus.icon-black

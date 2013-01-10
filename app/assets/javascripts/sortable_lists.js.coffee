@@ -1,16 +1,16 @@
-update_Status = (item_id, status, updateUrl) ->
-  $.ajax({
-  type : 'PUT',
-  data: { status: status }
-  url : updateUrl,
-  dataType: 'json',
-  error: (jqXHR, textStatus, errorThrown) ->
-    thing = jQuery.parseJSON(jqXHR.responseText)
-    element = $('#' + task.id)
-    element.detach()
-    list = $('#' + task.status)
-    list.append(element)
-  });
+#update_Status = (item_id, status, updateUrl) ->
+#  $.ajax({
+#  type : 'PUT',
+#  data: { status: status }
+#  url : updateUrl,
+#  dataType: 'json',
+#  error: (jqXHR, textStatus, errorThrown) ->
+#    thing = jQuery.parseJSON(jqXHR.responseText)
+#    element = $('#' + task.id)
+#    element.detach()
+#    list = $('#' + task.status)
+#    list.append(element)
+#  });
 
 
 

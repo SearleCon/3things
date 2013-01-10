@@ -137,4 +137,8 @@ describe TasksController do
     end
   end
 
+  describe "PUT moved" do
+
+  end
+
 end
