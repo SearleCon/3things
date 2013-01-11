@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   layout proc{ |c| c.request.xhr? ? false : "application" }
 
   before_filter :correct_ajax_headers
-  after_filter  :set_xhr_flash
+  after_filter  :discard_flash
 
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -36,8 +36,9 @@ class ApplicationController < ActionController::Base
   end
 
   #Ajax specific methods
-  def set_xhr_flash
-    flash.discard if request.xhr?
+  def discard_flash
+    return unless request.xhr?
+    flash.discard # don't want the flash to appear when you reload page
   end
 
   def correct_ajax_headers

@@ -56,7 +56,7 @@ class TasksController < ApplicationController
   # PUT /tasks/1/moved.json
   def moved
     @task.status = @status
-    @task.save
+    flash[:notice] = 'Task was successfully updated.' if @task.save
     respond_with(@task)
   end
 
