@@ -1,7 +1,9 @@
+<% if @task.errors.any? %>
+taskList = $("#<%= @task.status_was.name.capitalize %>");
+<% else %>
+taskList = $("#<%= @status.name.capitalize %>");
+<% end %>
 taskElement = $("#<%= @task.id%>");
 taskElement.remove();
-newParentList = $("#<%= @status.name.capitalize %>");
-newParentList.append("<%= escape_javascript(render @task) %>");
-
-
+taskList.append("<%= escape_javascript(render @task) %>");
 

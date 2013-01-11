@@ -63,7 +63,7 @@ class TasksController < ApplicationController
   # DELETE /tasks/remove_selected
   # DELETE /tasks/removed_selected.json
   def remove_selected
-    @tasks = Task.destroy_all(:id => params[:task_ids]) if params[:task_ids]
+    @tasks = Task.destroy(params[:task_ids]) if params[:task_ids]
     respond_with(@tasks)
   end
 

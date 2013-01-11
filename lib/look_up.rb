@@ -16,10 +16,16 @@ module LookUp
 
       # setter that accepts :value, 'value' or Value object
       define_method "#{table.to_s}=" do |value|
-        unless value.nil?
-          id = value.try(:is_a?, model) ? value.id : model.try(:find_by_name,value.to_s).id
+          id = nil
+          unless value.nil?
+           id = value.try(:is_a?, model) ? value.id : model.try(:find_by_name,value.to_s).id
+          end
           write_attribute(foreign_key, id)
-        end
+      end
+
+      # getter for dirty attributes
+      define_method "#{table.to_s}_was" do
+        model.try(:find_by_id, attribute_was(foreign_key))
       end
 
       # returns collection of lookup values as an array eg. ['pending', 'active', 'archived']

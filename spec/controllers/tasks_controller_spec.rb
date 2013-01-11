@@ -9,6 +9,7 @@ describe TasksController do
 
     @task = FactoryGirl.create(:task, :user => @user)
     @status = FactoryGirl.create(:status, :name => 'Todo')
+    @new_status = FactoryGirl.create(:status, :name => 'Doing')
     @valid_params =  @task.attributes
     @invalid_params =  FactoryGirl.build(:invalid_task, :user => @user).attributes
   end
@@ -139,6 +140,48 @@ describe TasksController do
 
   describe "PUT moved" do
 
+    it "located the requested @task" do
+      put :moved, { :id => @task.id, :status => @new_status.name, :format => :js}
+      assigns(:task).should eq(@task)
+    end
+
+    it "should render js" do
+      put :moved, { :id => @task.id, :status => @new_status.name, :format => :js}
+      response.content_type.should == Mime::JS
+    end
+
+    it "updates the requested task status" do
+      put :moved, { :id => @task.id, :status => @new_status.name}, :format => :js
+      @task.reload
+      @task.status.should eq(@new_status)
+    end
+
+    it "should render moved.js.erb" do
+      put :moved, { :id => @task.id, :status => @new_status.name}, :format => :js
+      response.should render_template(:js => "moved.js")
+    end
+  end
+
+  describe "DELETE remove_selected"do
+    before(:each) do
+      @tasks = [@task.id]
+    end
+
+    it "should render js" do
+      delete :remove_selected, {:task_ids => @tasks, :format => :js }
+      response.content_type.should == Mime::JS
+    end
+
+    it "deletes the requested tasks" do
+      expect {
+        delete :remove_selected, {:task_ids => @tasks, :format => :js }
+      }.to change(Task, :count).by(-@tasks.size)
+    end
+
+    it "should render remove_selected.js.erb" do
+      put :moved, { :id => @task.id, :status => @new_status.name}, :format => :js
+      response.should render_template(:js => "remove_selected.js")
+    end
   end
 
 end
