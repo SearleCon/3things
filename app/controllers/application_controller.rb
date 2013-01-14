@@ -27,7 +27,6 @@ class ApplicationController < ActionController::Base
     else
       root_url
     end
-
   end
 
 

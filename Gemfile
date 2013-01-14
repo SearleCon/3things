@@ -36,4 +36,5 @@ gem 'cache_digests'
 gem 'best_in_place'
 gem 'dalli'
 gem 'touchpunch-rails'
+gem 'rails_look_up_table'
 
