@@ -7,8 +7,9 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = (current_user.tasks) if current_user
-    respond_with(@tasks)
+    @todos = current_user.try(:tasks).todos.paginate(:per_page => 1, :page => params[:todos])
+    @doings = current_user.try(:tasks).doings.paginate(:per_page => 1, :page => params[:doings])
+    respond_with([@todos, @doings])
   end
 
   # GET /tasks/1

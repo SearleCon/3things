@@ -21,6 +21,7 @@
 //= require best_in_place.purr
 //= require bootstrap
 //= require bootstrap-tab
+//= require jquery.spin
 //= require_tree .
 
 $(document).ready(function(){

@@ -1,6 +1,6 @@
 $(document).ready ->
 
-  $(".expand_task").click (event) ->
+  $(".expand_task").live 'click', (event) ->
     $(this).find('i').toggleClass 'icon-plus icon-minus'
 
 

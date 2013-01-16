@@ -6,9 +6,12 @@
       %a{:href => "#doings", :data => {:toggle => 'tab' }} Doing
   .tab-content
     #todos.tab-pane.active
-      = render 'tasks/tasks', :tasks => current_user.try(:tasks).todos, :task_type => 'Todo'
+      #todo_list
+        = render 'tasks/tasks', :tasks => @todos, :task_type => 'Todo'
     #doings.tab-pane
-      = render 'tasks/tasks', :tasks => current_user.try(:tasks).doings, :task_type => 'Doing'
+      #doing_list
+        = render 'tasks/tasks', :tasks => @doings, :task_type => 'Doing'
+
 
 
 
