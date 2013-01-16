@@ -1,3 +1,5 @@
+#bin.droppable{:data => { :status => 'Archived'} }
+  Bin
 .tabbable
   %ul.nav.nav-tabs{:data => { :tabs => "tabs" } }
     %li.active.droppable{:id => 'todo_tab', :data => {:status => 'Todo'}}
@@ -7,11 +9,12 @@
   .tab-content
     #todos.tab-pane.active
       #todo_list
-        = render 'tasks/tasks', :tasks => @todos, :task_type => 'Todo'
+        = render 'tasks/tasks', :tasks => @todos, :task_type => 'Todo', :can_add => true
     #doings.tab-pane
       #doing_list
-        = render 'tasks/tasks', :tasks => @doings, :task_type => 'Doing'
-
+        = render 'tasks/tasks', :tasks => @doings, :task_type => 'Doing', :can_add => true
+#archived_list
+  = render 'tasks/tasks', :tasks => @archived,:task_type => 'Archived', :can_add => false
 
 
 

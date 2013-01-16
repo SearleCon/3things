@@ -1,9 +1,0 @@
-<% if @task.errors.any? %>
-$("#add_<%= @task.status.name %>").html("<%= escape_javascript (render 'tasks/form', :task => @task) %>");
-<% else %>
-$("#<%=@task.status.name %>").append("<%= escape_javascript(render @task) %>");
-$("#add_<%= @task.status.name %>").html("<%= escape_javascript (render 'tasks/form', :task => Task.new(:status => @task.status)) %>");
-$('.best_in_place').best_in_place();
-$("#<%=@task.id%>").closest('li').effect('highlight', {}, 3000);
-<% end %>
-

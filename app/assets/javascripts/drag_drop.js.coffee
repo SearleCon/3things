@@ -1,3 +1,28 @@
+@set_Draggable = (element) ->
+  element.draggable
+    cursor: "crosshair"
+    opacity: 0.35
+    appendTo: "body"
+    revert: "invalid"
+    drag: ->
+      $(this).addClass "active"
+      $(this).closest("li").addClass "active"
+    start: ->
+      element = $(this)
+      tabItem = $("#" + element.data('status').toLowerCase() + "_tab")
+      tabItem.droppable("option", "disabled", true)
+      tabItem.hide()
+
+    stop: ->
+      element = $(this)
+      element.removeClass("active").closest("li").removeClass "active"
+      tabItem = $("#" + element.data('status').toLowerCase() + "_tab")
+      tabItem.droppable("option", "disabled", false)
+      tabItem.show()
+
+
+
+
 update_Status = (item_id, status, updateUrl) ->
   $.ajax({
   type : 'PUT'
@@ -10,26 +35,7 @@ update_Status = (item_id, status, updateUrl) ->
 
 
 $(document).ready ->
-  $('.draggable').draggable
-    cursor: "crosshair"
-    opacity: 0.35
-    appendTo: "body"
-    revert: "invalid"
-    drag: ->
-      $(this).addClass "active"
-      $(this).closest("li").addClass "active"
-    start: ->
-        element = $(this)
-        tabItem = $("#" + element.data('status').toLowerCase() + "_tab")
-        tabItem.droppable("option", "disabled", true)
-        tabItem.hide()
-
-    stop: ->
-      element = $(this)
-      element.removeClass("active").closest("li").removeClass "active"
-      tabItem = $("#" + element.data('status').toLowerCase() + "_tab")
-      tabItem.droppable("option", "disabled", false)
-      tabItem.show()
+  set_Draggable($('.draggable'))
 
 
   $('.droppable').droppable

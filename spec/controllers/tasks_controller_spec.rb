@@ -7,9 +7,10 @@ describe TasksController do
     @user = FactoryGirl.create(:user)
     sign_in @user
 
-    @task = FactoryGirl.create(:task, :user => @user)
     @status = FactoryGirl.create(:status, :name => 'Todo')
     @new_status = FactoryGirl.create(:status, :name => 'Doing')
+    @task = FactoryGirl.create(:task, :user => @user, :status => @status)
+    @doing = FactoryGirl.create(:task, :user => @user, :status  => @new_status  )
     @valid_params =  @task.attributes
     @invalid_params =  FactoryGirl.build(:invalid_task, :user => @user).attributes
   end
@@ -28,10 +29,22 @@ describe TasksController do
   end
 
   describe "GET index" do
-    it "assigns all tasks as @tasks" do
+    it "assigns @doings and @todos" do
       get :index, {}
-      assigns(:tasks).should eq([@task])
+      assigns(:todos).should eq([@task])
+      assigns(:doings).should eq([@doing])
     end
+
+    it "should render js" do
+      get :index, { :format => :js}
+      response.content_type.should == Mime::JS
+    end
+
+    it "should render index.js" do
+      get :index, { :format => :js}
+      response.should render_template(:js => "index.js")
+    end
+
   end
 
   describe "GET show" do
@@ -156,7 +169,7 @@ describe TasksController do
       @task.status.should eq(@new_status)
     end
 
-    it "should render moved.js.erb" do
+    it "should render moved.js" do
       put :moved, { :id => @task.id, :status => @new_status.name}, :format => :js
       response.should render_template(:js => "moved.js")
     end
@@ -178,7 +191,7 @@ describe TasksController do
       }.to change(Task, :count).by(-@tasks.size)
     end
 
-    it "should render remove_selected.js.erb" do
+    it "should render remove_selected.js" do
       put :moved, { :id => @task.id, :status => @new_status.name}, :format => :js
       response.should render_template(:js => "remove_selected.js")
     end

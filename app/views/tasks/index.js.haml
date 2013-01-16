@@ -1,0 +1,9 @@
+var element = null;
+- if params[:doings]
+  $('#doing_list').html('#{escape_javascript (render 'tasks/tasks', :tasks => @doings, :task_type => 'Doing', :can_add => true)}');
+- elsif params[:todos]
+  $('#todo_list').html('#{escape_javascript (render 'tasks/tasks', :tasks => @todos, :task_type => 'Todo', :can_add => true)}');
+- else
+  $('#archived_list').html('#{escape_javascript (render 'tasks/tasks', :tasks => @archived, :task_type => 'Archived', :can_add => false)}');
+$.setAjaxPagination();
+set_Draggable($('.draggable'));

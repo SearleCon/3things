@@ -7,5 +7,6 @@
   %br
   = submit_tag 'Edit list', :id => "#{task_type}_submit", :class => 'task_list', :data => { :updatelist => false }
 = will_paginate tasks, :param_name => task_type.downcase.pluralize, :page_links => false
-%div.add_task.well{:id => "add_#{task_type}"}
-  = render 'tasks/form', :task => tasks.build
+- if can_add
+  %div.add_task.well{:id => "add_#{task_type}"}
+    = render 'tasks/form', :task => tasks.build

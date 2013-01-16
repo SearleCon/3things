@@ -1,0 +1,7 @@
+- if @task.errors.any?
+  taskList = $("##{@task.status_was.name.capitalize}");
+- else
+  taskList = $("##{@status.name.capitalize}");
+taskElement = $("##{@task.id}");
+taskElement.remove();
+taskList.append("#{escape_javascript(render @task)}");

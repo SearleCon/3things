@@ -4,7 +4,6 @@ class Task < ActiveRecord::Base
 
   belongs_to :user, :touch => true
 
-  before_validation :set_default_status, :on => :create
   before_save :format_attributes
   before_update :make_history
   after_destroy :clear_history
@@ -16,10 +15,6 @@ class Task < ActiveRecord::Base
   def format_attributes
     self.title = self.title.to_s.titleize
     self.description.capitalize!
-  end
-
-  def set_default_status
-    self.status = Status.where(:name => :Todo).first unless self.status
   end
 
   def make_history
