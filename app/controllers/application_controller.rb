@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  layout proc{ |c| c.request.xhr? ? false : "application" }
+  before_filter proc { |controller| (controller.action_has_layout = false) if controller.request.xhr? }
 
   before_filter :correct_ajax_headers
   after_filter  :discard_flash
