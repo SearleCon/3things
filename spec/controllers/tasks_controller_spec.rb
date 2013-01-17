@@ -11,6 +11,7 @@ describe TasksController do
     @new_status = FactoryGirl.create(:status, :name => 'Doing')
     @task = FactoryGirl.create(:task, :user => @user, :status => @status)
     @doing = FactoryGirl.create(:task, :user => @user, :status  => @new_status  )
+    @archived = FactoryGirl.create(:task, :user => @user, :status => :Archived)
     @valid_params =  @task.attributes
     @invalid_params =  FactoryGirl.build(:invalid_task, :user => @user).attributes
   end
@@ -28,11 +29,13 @@ describe TasksController do
     end
   end
 
+  #TODO update this test
   describe "GET index" do
     it "assigns @doings and @todos" do
       get :index, {}
       assigns(:todos).should eq([@task])
       assigns(:doings).should eq([@doing])
+      assigns(:archived).should eq([@archived])
     end
 
     it "should render js" do
