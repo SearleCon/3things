@@ -39,3 +39,4 @@ gem 'touchpunch-rails'
 gem 'rails_look_up_table'
 gem 'will_paginate'
 gem "spinjs-rails"
+gem 'placeholdit'

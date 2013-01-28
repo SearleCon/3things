@@ -1,0 +1,6 @@
+- form_tag update_multiple_tasks_path, :method => :put do
+  - for task in @tasks
+    - fields_for "tasks[]", task do |f|
+      %h2= h task.title
+      = render "fields", :f => f
+  %p= submit_tag "Submit"

@@ -3,6 +3,6 @@
     = check_box_tag "task_ids[]", task.id
     %button.btn.btn-link{:type => 'button',:class => 'expand_task',:data => { :target => "#details_#{task.id}", :toggle => "collapse"} }
       %i.icon-plus.icon-black
-    = best_in_place task, :title, :type => :input, :classes => 'bounce_on_success'
+    = task.title
     #details.collapse{:id => task.id}
-      = best_in_place task, :description, :type => :textarea, :classes => 'highlight_on_success'
+      = task.description

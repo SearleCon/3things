@@ -41,9 +41,7 @@ class TasksController < ApplicationController
   # PUT /tasks/1.json
   def update
     flash[:notice] = 'Task was successfully updated.' if  @task.update_attributes(task_params)
-    respond_with(@task) do |format|
-      format.json { respond_with_bip(@task) }
-    end
+    respond_with(@task)
   end
 
   # DELETE /tasks/1
@@ -67,6 +65,24 @@ class TasksController < ApplicationController
   def remove_selected
     @tasks = Task.destroy(params[:task_ids]) if params[:task_ids]
     respond_with(@tasks)
+  end
+
+  # GET /tasks/editing
+  def editing
+     @tasks = Task.find(params[:task_ids])
+     unless params[:editing_button]
+        redirect_to root_url
+     end
+  end
+
+  def update_multiple
+    @tasks = Task.update(params[:tasks].keys, params[:tasks].values).reject { |p| p.errors.empty? }
+    if @tasks.empty?
+      flash[:notice] = "Tasks updated"
+      redirect_to root_url
+    else
+      render :action => "editing_tasks"
+    end
   end
 
   private

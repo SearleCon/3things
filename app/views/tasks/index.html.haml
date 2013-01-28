@@ -1,6 +1,6 @@
 #bin.droppable{:data => { :status => 'Archived'} }
-  Bin
-.tabbable
+  = placeholdit_image_tag "150", text: "Trashcan"
+.tabbable.tabs-left
   %ul.nav.nav-tabs{:data => { :tabs => "tabs" } }
     %li.active.droppable{:id => 'todo_tab', :data => {:status => 'Todo'}}
       %a{:href => "#todos", :data => { :toggle => 'tab' }} Todo
@@ -8,14 +8,19 @@
       %a{:href => "#doings", :data => {:toggle => 'tab' }} Doing
   .tab-content
     #todos.tab-pane.active
+      %ul.toolbar.nav.nav-pills
+        %li.active
+          %a{:href => "#todos", :data => { :toggle => 'tab' }}
+            %i.icon-large.icon-search
+        %li.active
+          %a{:href => "#todos", :data => { :toggle => 'tab' }}
+            %i.icon-large.icon-edit
+      %br
       #todo_list
-        = render 'tasks/tasks', :tasks => @todos, :task_type => 'Todo', :can_add => true
+        = render 'tasks/tasks', :tasks => @todos, :task_type => 'Todo', :can_add => true, :editing => false
     #doings.tab-pane
       #doing_list
-        = render 'tasks/tasks', :tasks => @doings, :task_type => 'Doing', :can_add => true
-#archived_list
-  = render 'tasks/tasks', :tasks => @archived,:task_type => 'Archived', :can_add => false
-
+        = render 'tasks/tasks', :tasks => @doings, :task_type => 'Doing', :can_add => true, :editing => false
 
 
 

@@ -141,7 +141,9 @@ input, textarea, select, .uneditable-input {
   @extend .control-group;
   @extend .error;
 }
-
-input[type="checkbox"]{
-  visibility: hidden;
-}
+      ul{
+        list-style-type: none;
+      }
+//input[type="checkbox"]{
+//  visibility: hidden;
+//}

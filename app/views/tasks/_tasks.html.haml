@@ -1,12 +1,10 @@
-= form_tag remove_selected_tasks_path, :id => "#{task_type}_list_form", :class => 'task_list', :remote => true, :method => :delete do
-  %ul.sortable.nav.nav-list{:id => task_type}
-    %li.nav-header
-      = task_type
+= form_tag editing_tasks_path, :id => "#{task_type}_list_form", :class => 'task_list' do
+  %ul.items{:id => task_type}
     - cache tasks do
       = render tasks
   %br
-  = submit_tag 'Edit list', :id => "#{task_type}_submit", :class => 'task_list', :data => { :updatelist => false }
+  = submit_tag 'Remove selected', :id => "#{task_type}_submit", :class => 'task_list', :data => { :updatelist => false, :type => task_type }
+  = submit_tag 'Edit selected', :name => "editing_button"
 = will_paginate tasks, :param_name => task_type.downcase.pluralize, :page_links => false
-- if can_add
-  %div.add_task.well{:id => "add_#{task_type}"}
-    = render 'tasks/form', :task => tasks.build
+%div.add_task.well{:id => "add_#{task_type}"}
+  = render 'tasks/form', :task => tasks.build

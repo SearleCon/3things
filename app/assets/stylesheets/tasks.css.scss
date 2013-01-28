@@ -1,6 +1,6 @@
 /* collapsible task details */
 .collapse {
-  text-align: center;
+  text-align: inherit;
 }
 
 
@@ -24,18 +24,22 @@
 
 /* add task form */
 .add_task {
+  width: 30%;
   input{
-    width: 20%;
+    width: 100%;
   }
   textarea {
   height: 50px;
-  width: 40%;
+  width: 100%;
+  }
+  .btn{
+    width: 50%;
   }
 }
 
 /* tabs */
 .tab-content{
-  overflow: visible;
+  display: block; // prevent content from running below tabs
 }
 
 /* bin div */
@@ -44,5 +48,6 @@
 }
 
 
-
-
+.toolbar{
+  float: right;
+}

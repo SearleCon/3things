@@ -19,7 +19,11 @@ Foundation::Application.routes.draw do
 
   resources :tasks do
     member { put :moved }
-    collection { delete :remove_selected }
+    collection do
+     delete :remove_selected
+     post :editing
+     put :update_multiple
+    end
   end
 
 

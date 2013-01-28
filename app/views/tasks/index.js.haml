@@ -1,4 +1,3 @@
-var element = null;
 - if params[:doings]
   $('#doing_list').html('#{escape_javascript (render 'tasks/tasks', :tasks => @doings, :task_type => 'Doing', :can_add => true)}');
 - elsif params[:todos]
