@@ -1,9 +1,7 @@
-= simple_form_for task, :remote => true do |f|
+= simple_form_for task,:html => {:class => "form-inline" }, :remote => true do |f|
   = f.error_notification
+  = f.input_field :title, :placeholder => "Enter Title"
+  = f.input_field :description, :placeholder => "Enter Description"
+  = f.hidden_field :status_id
 
-  .form-inputs
-    = f.input :title, :required => true
-    = f.input :description, :autofocus => true
-    = f.hidden_field :status_id
-
-  = f.button :submit
+  = f.button :submit, :class => "btn btn-small btn-primary"

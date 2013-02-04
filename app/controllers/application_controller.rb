@@ -19,7 +19,6 @@ class ApplicationController < ActionController::Base
     render :file => "#{Rails.root}/public/404.html", :status => 404, :layout => false
   end
 
-
   private
   def after_sign_in_path_for(resource)
     if current_user.subscriptions.empty? || current_user.subscriptions.first.has_expired?

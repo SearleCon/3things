@@ -26,4 +26,10 @@
 
 $(document).ready(function(){
     $('textarea').autosize();
+    var checkboxes = $("input[type='checkbox']"),
+        submitButt = $("input[type='submit']");
+
+    checkboxes.click(function() {
+        submitButt.prop("disabled", !checkboxes.is(":checked"));
+    });
 });

@@ -1,4 +1,3 @@
-= f.error_messages :object_name => "task"
-  = f.input :title, :required => true
-  = f.input :description, :autofocus => true
-  = f.hidden_field :status_id
+= f.error_notification
+= f.input :title, :required => true
+= f.input :description, :autofocus => true

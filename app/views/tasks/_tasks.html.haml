@@ -3,8 +3,8 @@
     - cache tasks do
       = render tasks
   %br
-  = submit_tag 'Remove selected', :id => "#{task_type}_submit", :class => 'task_list', :data => { :updatelist => false, :type => task_type }
-  = submit_tag 'Edit selected', :name => "editing_button"
+  = submit_tag 'Remove selected', :id => "#{task_type}_submit", :class => 'btn btn-primary btn-mini task_list', :data => { :updatelist => false, :type => task_type }
+  = submit_tag 'Edit selected', :name => "editing_button", :class => 'btn btn-primary btn-mini task_list'
 = will_paginate tasks, :param_name => task_type.downcase.pluralize, :page_links => false
 %div.add_task.well{:id => "add_#{task_type}"}
   = render 'tasks/form', :task => tasks.build

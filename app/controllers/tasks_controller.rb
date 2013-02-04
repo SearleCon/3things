@@ -1,9 +1,11 @@
 class TasksController < ApplicationController
   respond_to :html, :js
 
+  before_filter :get_resources, :only => [:editing]
   before_filter :get_resource, :only => [:moved,:show, :update, :edit, :destroy]
   before_filter :get_status, :only => [:moved]
   before_filter :new_resource, :only => [:new, :create]
+
   # GET /tasks
   # GET /tasks.json
   def index
@@ -69,10 +71,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/editing
   def editing
-     @tasks = Task.find(params[:task_ids])
-     unless params[:editing_button]
-        redirect_to root_url
-     end
+    Task.destroy(@tasks) and redirect_to tasks_url unless params[:editing_button]
   end
 
   def update_multiple
@@ -81,13 +80,17 @@ class TasksController < ApplicationController
       flash[:notice] = "Tasks updated"
       redirect_to root_url
     else
-      render :action => "editing_tasks"
+      render :action => :editing
     end
   end
 
   private
   def get_resource
     @task = Task.find(params[:id]) if params[:id]
+  end
+
+  def get_resources
+    @tasks = Task.find(params[:task_ids]) if params[:task_ids]
   end
 
   def new_resource
